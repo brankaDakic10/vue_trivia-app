@@ -19,7 +19,7 @@ export const ChuckModule = {
             state.randomJoke = joke;
         },
         setJokeCategory(state, jokeCategory){
-            console.log('provera',jokeCategory)
+            // console.log('provera',jokeCategory)
             state.jokeCategory = jokeCategory;
         }
     },
@@ -30,6 +30,8 @@ export const ChuckModule = {
 //dobavlja sledecu vrednost
         fatchRandomJoke(store,next){
                                     ///prosledi store.state.jokeCategory
+                                    //da bi dobili trazeni input po 
+                                    //nazivu kategorije npr ukucaj 'dev' u input
            ChuckService.getRandomJoke(store.state.jokeCategory).then((joke)=>{
               store.commit('setRandomJoke',joke);
               next();
