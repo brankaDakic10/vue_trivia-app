@@ -1,17 +1,22 @@
 <template>
     <div class="container">
-        <p>Joke: {{randomJoke.value}}</p>
 
-        
+
+        <div class="card" style="width: 14rem;">
+            <img class="card-img-top" :src="randomJoke.iconUrl" alt="Card image cap">
+            <div class="card-body">
+
+                <p class="card-text" v-text="randomJoke.value"></p>
+                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+        </div>
     </div>
 
 </template>
 
 <script>
-    import {
-        mapGetters,
-        mapActions
-    } from 'vuex'
+    import { mapGetters, mapActions } from 'vuex'
+    import {store} from './../store'
     export default {
         name: 'Chuck',
         computed: {
@@ -32,8 +37,14 @@
                 'fatchRandomJoke'
             ])
         },
-        created() {
-            this.fatchRandomJoke();
+        // created() {
+        //     this.fatchRandomJoke();
+        // },
+        // dodaj next da bi dobavili  objekat
+        beforeRouteEnter(to, from, next) {
+            // this.fatchRandomJoke();
+            store.dispatch('fatchRandomJoke', next);
+
         }
     }
 </script>

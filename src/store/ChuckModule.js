@@ -18,9 +18,13 @@ export const ChuckModule = {
     },
     actions:{
 // vrsi se asinhrono
-        fatchRandomJoke(store){
+// dodajem  next isto kao i u beforeRouteEnter, 
+// da bi pozivala ceo objekat iako smo ga inicijal na null
+//dobavlja sledecu vrednost
+        fatchRandomJoke(store,next){
            ChuckService.getRandomJoke().then((joke)=>{
-              store.commit('setRandomJoke',joke)
+              store.commit('setRandomJoke',joke);
+              next();
            })
         }
     }
